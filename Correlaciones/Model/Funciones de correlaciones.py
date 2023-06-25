@@ -86,7 +86,7 @@ def uo_beggs_ro(api, temperatura):
 # %%
 # Funcion para la correlación de Standing para el punto de burbuja
 def pbStanding(rs,gsg,API,temp):
-  """Función utilizada para calcular el pb según la correlación de Standing,         usando como parametros RS medido, gsg, API y la temperatura en R"""
+  """Función utilizada para calcular el pb según la correlación de Standing,usando como parametros RS medido, gsg, API y la temperatura en R"""
   a=0.00091*((temp+460)-460)-0.0125*(API)
   pb=18.2*(((rs/gsg)**0.83)*((10)**a)-1.4)
   return pb
