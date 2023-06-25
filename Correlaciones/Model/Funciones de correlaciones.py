@@ -1,4 +1,5 @@
 
+
 import numpy as np
 from math import log
 
@@ -81,6 +82,7 @@ def uo_beggs_ro(api, temperatura):
     valor_z = 3.0324 - (0.02023*api)
     valor_y = 10**valor_z
     valor_x = valor_y * ((temperatura-460)**(-1.163))
+
     viscosidad = 10**valor_x - 1
     print("La viscosidad es: ", viscosidad)
 # %%
