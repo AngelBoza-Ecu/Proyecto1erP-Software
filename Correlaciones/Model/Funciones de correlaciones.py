@@ -1,3 +1,4 @@
+
 import numpy as np
 from math import log
 
@@ -82,3 +83,19 @@ def uo_beggs_ro(api, temperatura):
     valor_x = valor_y * ((temperatura-460)**(-1.163))
     viscosidad = 10**valor_x - 1
     print("La viscosidad es: ", viscosidad)
+# %%
+# Funcion para la correlación de Standing para el punto de burbuja
+def pbStanding(rs,gsg,API,temp):
+  """Función utilizada para calcular el pb según la correlación de Standing,         usando como parametros RS medido, gsg, API y la temperatura en R"""
+  a=0.00091*((temp+460)-460)-0.0125*(API)
+  pb=18.2*(((rs/gsg)**0.83)*((10)**a)-1.4)
+  return pb
+# %%
+# Funcion para la correlación de Glaso para el punto de burbuja
+def pbGlaso(rs,gsg,API,temp):
+  """Función utilizada para calcular el pb según la correlación de Glaso
+  ,usando como parametros RS medido, gsg, API y la temperatura en °F"""
+  pB=(rs/gsg)**0.816*(temp**0.172)*(API**-0.989)
+  exp=1.7669+1.7447*log(pB,10)-0.30218*(log(pB,10)**2)
+  pb=10**exp
+  return pb
