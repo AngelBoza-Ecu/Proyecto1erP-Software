@@ -8,9 +8,28 @@ from matplotlib import ticker
 import seaborn as sns
 ####
 
+
+# Define sheets
+SHEET_SUMMARY = "sheet1"
+
+# Define column names
+MUESTRA = "muestras"
+T = "temperaturas"
+Pb = "pburbuja"
+Rs = "rs_medido"
+API = "grad_api"
+Yg = "gs_gas"
+
+# Index of Muestras Parameters
+M1, M2, M3, M4, M5, M6 = 0, 1, 2, 3, 4, 5
+
+
+
+
 def main():
     wb = xw.Book.caller()
-    sheet = wb.sheets[0]
+    sheet = wb.sheets[SHEET_SUMMARY]
+
     if sheet["A1"].value == "Hello xlwings!":
         sheet["A1"].value = "Bye xlwings!"
     else:
