@@ -64,7 +64,7 @@ def uo_beal(api,temperatura):
     api: que son los grados api del petróleo
     temperatura: es la temperatura en unidades Ranking"""
     valor_a = (10**(0.43+(8.33/api)))
-    viscosidad = (0.32 + ((1.8*10**7)/(api**4.53))*(360/(temperatura-260))**valor_a)
+    viscosidad = (0.32 + ((1.8*10**7)/(api**4.53))*(360/(temperatura-200))**valor_a)
     print("La viscosidad es: ", viscosidad)
 
 
@@ -80,7 +80,7 @@ def uo_beggs_ro(api, temperatura):
     """
     valor_z = 3.0324 - (0.02023*api)
     valor_y = 10**valor_z
-    valor_x = valor_y * ((temperatura-460)**(-1.163))
+    valor_x = valor_y * ((temperatura)**(-1.163))
 
     viscosidad = 10**valor_x - 1
     print("La viscosidad es: ", viscosidad)
