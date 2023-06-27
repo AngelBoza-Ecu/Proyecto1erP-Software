@@ -2,10 +2,11 @@
 import xlwings as xw
 import pandas as pd
 import numpy as np
-from Correlaciones.Model.Funciones_de_correlaciones import boStanding,boGlaso,RsStan,RsGla,uo_beal,uo_beggs_ro,pbStanding,pbGlaso
+from Correlaciones.Model.funciones_de_correlaciones import boStanding,boGlaso,RsStan,RsGla,uo_beal,uo_beggs_ro,pbStanding,pbGlaso
 import matplotlib.pyplot as plt
 from matplotlib import ticker
 import seaborn as sns
+####
 
 def main():
     wb = xw.Book.caller()
