@@ -11,16 +11,21 @@ def boStanding(gsg,temp,API,rs):
   return bo
 
 # %%
-# Funcion para la correlación de Glaso
-def boGlaso(gsg,temp,API,rs):
-  """Esta función generada en base a la correlación de Glaso permite
-  calcular el factor volumétrico de formación en función a los mismos
-  parámetros utilizados en Standing"""
-  Bob=rs*(gsg/(141.5/131.5+API))**0.526+0.968*((temp+460)-460)
-  A=-6.58511+2.91329*np.log10(Bob)-0.27683*(np.log10(Bob)**2)
-  bo=1.0+10**A
-  return bo
+# Funcion para la correlación de AlMarhoun
+def boAlMarhoun(yg,T,API,rs):
+    """Se creó est función adicional para la obtención del factor volumétrico puesto
+    que la función de Glasso presentó problemas con el logaritmo que esta incluye.
+    Esta correlación utiliza las constantes a, b y c, así como también F la cual es una
+    nueva variable
+    La temperatura debe estar °R."""
 
+    a = 0.742390
+    b = 0.323294
+    c = -1.202040
+    F = (rs**a) * (yg**b) * ((141.5/(API+131.5))**c)
+    bo = 0.497069 + (0.862963*(10**-3)*(T+460)) + (0.182594*(10**-2)*(F)) + 0.318099*(10**-5)*(F**2)
+
+    return bo
 #%%
 #Correlación de Standing
 
@@ -97,31 +102,6 @@ def pbStanding(gsg,temp,API,rs):
   return pb
 # %%
 # Funcion para la correlación de Glaso para el punto de burbuja
-def pbGlaso(gsg,API,temp,rs):
-  """Función utilizada para calcular el pb según la correlación de Glaso
-  ,usando como parametros RS medido, gsg, API y la temperatura en °F"""
-  pB=(rs/gsg)**0.816*(temp**0.172)*(API**-0.989)
-  lpb = np.log10(pB)
-  exp=1.7669+1.7447*lpb-0.30218*(lpb**2)
-  pb=10**exp
-  return pb
-
-# %%
-def boAlMarhoun(yg,T,API,rs):
-    """Se creó est función adicional para la obtención del factor volumétrico puesto
-    que la función de Glasso presentó problemas con el logaritmo que esta incluye.
-    Esta correlación utiliza las constantes a, b y c, así como también F la cual es una
-    nueva variable
-    La temperatura debe estar °R."""
-
-    a = 0.742390
-    b = 0.323294
-    c = -1.202040
-    F = (rs**a) * (yg**b) * ((141.5/(API+131.5))**c)
-    bo = 0.497069 + (0.862963*(10**-3)*(T+460)) + (0.182594*(10**-2)*(F)) + 0.318099*(10**-5)*(F**2)
-
-    return bo
-# %%
 def pbAlMarhoun(yg,T,API,rs):
     """Esta función también fue creada como una acción mediática hacia la correlación
     de Glasso que presentó problemas con el logaritmo.
@@ -136,3 +116,8 @@ def pbAlMarhoun(yg,T,API,rs):
     TR = T+460
     pb = a * ((rs)**b) * ((yg)**c) * ((141.5/(API+131.5))**d) * ((TR)**e)
     return pb
+
+
+# %%
+
+# %%
